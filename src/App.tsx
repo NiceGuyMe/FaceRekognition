@@ -1,31 +1,29 @@
 import {useState} from "react";
 import AWS from "aws-sdk";
-
-
+require('dotenv').config()
 AWS.config.update({
-    region: 'eu-west-2',
+    region: process.env.REACT_APP_API_REGION,
     credentials: new AWS.CognitoIdentityCredentials({
         IdentityPoolId: 'eu-west-2:371cdf1c-657e-4e3f-a6a0-3cdcf905bfdc'
     })
 });
 
 const App = () => {
-    const [smile, setSmile] = useState<any>();
-    const [hightAge, setHightAge] = useState<any>();
-    const [eyeGlasses, setEyeGlasses] = useState<any>();
-    const [Beard, setBeard] = useState<any>();
-    const [quality1, setQuality1] = useState<any>();
-    const [quality2, setQuality2] = useState<any>();
-    const [lowAge, setLowAge] = useState<any>();
-    const [mustache, setMustache] = useState<any>();
-    const [sunglasses, setSunglasses] = useState<any>();
+    const [smile, setSmile] = useState<any>(0);
+    const [hightAge, setHightAge] = useState<any>(0);
+    const [eyeGlasses, setEyeGlasses] = useState<any>(0);
+    const [Beard, setBeard] = useState<any>(0);
+    const [quality1, setQuality1] = useState<any>(0);
+    const [quality2, setQuality2] = useState<any>(0);
+    const [lowAge, setLowAge] = useState<any>(0);
+    const [mustache, setMustache] = useState<any>(0);
+    const [sunglasses, setSunglasses] = useState<any>(0);
     const [selectedImage, setSelectedImage] = useState<any>();
     const [gender, setGender] = useState<any>();
-    const [mounth, setMounth] = useState<any>();
-    const [eye, setEye] = useState<any>();
-    const [conf, setConf] = useState<any>();
+    const [mounth, setMounth] = useState<any>(0);
+    const [eye, setEye] = useState<any>(0)
     const AnonLog = () => {
-            AWS.config.region = 'eu-west-2';
+            AWS.config.region = process.env.REACT_APP_API_REGION;
             AWS.config.credentials = new AWS.CognitoIdentityCredentials({
                 IdentityPoolId: 'eu-west-2:371cdf1c-657e-4e3f-a6a0-3cdcf905bfdc',
             })
@@ -57,7 +55,6 @@ const App = () => {
                     setMustache(i.Mustache?.Confidence)
                     setEyeGlasses(i.Eyeglasses?.Confidence)
                     setSunglasses(i.Sunglasses?.Confidence)
-                    setConf(i.Confidence)
                     setGender(  i.Gender?.Value)
                     setMounth(i.MouthOpen?.Confidence)
                     setEye(i.EyesOpen?.Confidence)
