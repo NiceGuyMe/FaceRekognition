@@ -1,8 +1,7 @@
 import {useState} from "react";
 import AWS from "aws-sdk";
-require('dotenv').config()
 AWS.config.update({
-    region: process.env.REACT_APP_API_REGION,
+    region: 'eu-west-2',
     credentials: new AWS.CognitoIdentityCredentials({
         IdentityPoolId: 'eu-west-2:371cdf1c-657e-4e3f-a6a0-3cdcf905bfdc'
     })
@@ -23,7 +22,7 @@ const App = () => {
     const [mounth, setMounth] = useState<any>(0);
     const [eye, setEye] = useState<any>(0)
     const AnonLog = () => {
-            AWS.config.region = process.env.REACT_APP_API_REGION;
+            AWS.config.region = 'eu-west-2';
             AWS.config.credentials = new AWS.CognitoIdentityCredentials({
                 IdentityPoolId: 'eu-west-2:371cdf1c-657e-4e3f-a6a0-3cdcf905bfdc',
             })
